@@ -2,7 +2,8 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { GenericUtils } from "../utils/generic.utils";
 
-const REST_URL = "http://localhost:8080/rest";
+const REST_URL =
+  "http://steventos-steventos.1d35.starter-us-east-1.openshiftapps.com/rest";
 
 export class SteventosService<T> {
   URL_REST: string;

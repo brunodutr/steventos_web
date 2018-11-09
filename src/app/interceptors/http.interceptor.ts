@@ -1,16 +1,9 @@
-import {
-  HttpEvent,
-  HttpHandler,
-  HttpInterceptor,
-  HttpRequest,
-  HttpHeaders,
-  HttpResponse
-} from "@angular/common/http";
+import { HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { LocalStorage } from "@ngx-pwa/local-storage";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Router } from "@angular/router";
 
 @Injectable()
 export class HttpsRequestInterceptor implements HttpInterceptor {

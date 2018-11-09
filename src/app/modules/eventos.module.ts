@@ -25,7 +25,7 @@ const routes: Routes = [
   {
     path: "edit/:id",
     component: EventosFormComponent
-  },
+  }
 ];
 
 @NgModule({

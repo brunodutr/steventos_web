@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { MatIconModule } from "@angular/material";
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule } from "@angular/router";
 import { FooterComponent } from "../pages/impl/ui/footer/footer.component";
 import { HeaderComponent } from "../pages/impl/ui/header/header.component";
 import { LayoutComponent } from "../pages/impl/ui/layout/layout.component";

@@ -7,8 +7,7 @@ import { SteventosService } from "src/app/services/steventos.service";
   selector: "steventos-list",
   templateUrl: "./abstract-list.component.html"
 })
-export class SteventosListComponent  implements OnInit{
- 
+export class SteventosListComponent implements OnInit {
   @Input()
   service: SteventosService<any>;
 
@@ -20,9 +19,8 @@ export class SteventosListComponent  implements OnInit{
 
   objetos: Observable<any[]>;
 
-  constructor(private router: Router) {
-  }
-  
+  constructor(private router: Router) {}
+
   ngOnInit(): void {
     this.objetos = this.service.getAll();
   }

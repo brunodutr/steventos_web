@@ -9,7 +9,7 @@ import { LocalService } from "./impl/local.service";
 const URL_REST = "http://localhost:8080/rest/locais/autocomplete";
 
 export const _filter = (opt: string[], value: string): string[] => {
-  const filterValue = value.toLowerCase();
+  const filterValue = value.toString().toLowerCase();
 
   return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
 };

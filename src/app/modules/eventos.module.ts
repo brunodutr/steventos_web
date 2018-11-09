@@ -7,6 +7,7 @@ import { SharedModule } from "./shared.module";
 import { EventosListComponent } from "../pages/impl/eventos/list/eventos-list.component";
 import { EventosFormComponent } from "../pages/impl/eventos/form/eventos-form.component";
 import { EventosMaterial } from "../material/eventos.material";
+import { EventosDetailComponent } from "../pages/impl/eventos/detail/eventos-detail.component";
 
 const routes: Routes = [
   {
@@ -14,9 +15,17 @@ const routes: Routes = [
     component: EventosListComponent
   },
   {
-    path: "form",
+    path: ":id",
+    component: EventosDetailComponent
+  },
+  {
+    path: "add/:id",
     component: EventosFormComponent
-  }
+  },
+  {
+    path: "edit/:id",
+    component: EventosFormComponent
+  },
 ];
 
 @NgModule({
@@ -28,7 +37,11 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [EventosListComponent, EventosFormComponent],
+  declarations: [
+    EventosListComponent,
+    EventosFormComponent,
+    EventosDetailComponent
+  ],
   exports: [RouterModule],
   providers: [EventoService]
 })

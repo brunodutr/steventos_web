@@ -1,0 +1,8 @@
+<p>{{ object?.id }}</p>
+<p>{{ object?.nome }}</p>
+<p>{{ object?.descricao }}</p>
+<p>{{ object?.local.cidade }} - {{ object?.local.estado }}</p>
+<p>
+  {{ object?.dataIni | date: "dd/MM/yyyy" }} -
+  {{ object?.dataFim | date: "dd/MM/yyyy" }}
+</p>

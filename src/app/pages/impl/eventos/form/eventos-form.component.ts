@@ -11,40 +11,35 @@ import { EventoService } from "src/app/services/impl/eventos.service";
   styleUrls: ["./eventos-form.component.scss"]
 })
 export class EventosFormComponent implements OnInit {
-  eventoForm: FormGroup;
-
-  local: Local;
-  displayFn: Function;
+  eForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private service: EventoService,
+    public eService: EventoService,
     public cService: CidadeService
   ) {}
 
   ngOnInit() {
-    this.eventoForm = this.formBuilder.group({
+    this.eForm = this.formBuilder.group({
+      id: [""],
       nome: ["", [Validators.required]],
       descricao: ["", Validators.required],
       dataIni: ["", Validators.required],
       dataFim: ["", [Validators.required]],
-      cidade: ["", Validators.required]
+      local: ["", Validators.required]
     });
-
-    this.displayFn = Local.display();
   }
 
-  onSubmit() {
-    let ctrl = this.eventoForm.controls;
+  setEvento(e: Evento) {
+    this.eForm.controls.id.setValue(e.id);
+    this.eForm.controls.nome.setValue(e.nome);
+    this.eForm.controls.descricao.setValue(e.descricao);
+    this.eForm.controls.local.setValue(e.local);
+    this.eForm.controls.dataIni.setValue(e.dataIni);
+    this.eForm.controls.dataFim.setValue(e.dataFim);
+  }
 
-    const evento: Evento = new Evento({
-      nome: ctrl.nome.value,
-      descricao: ctrl.descricao.value,
-      dataIni: ctrl.dataIni.value,
-      dataFim: ctrl.dataFim.value,
-      local: this.local
-    });
-
-    this.service.create(evento);
+  displayLocal(): Function {
+    return Local.display();
   }
 }

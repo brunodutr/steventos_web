@@ -8,6 +8,6 @@ import { SteventosService } from "../steventos.service";
 })
 export class LocalService extends SteventosService<Local> {
   constructor(private _http: HttpClient) {
-    super(_http, "locais");
+    super(_http, "locais", Local);
   }
 }

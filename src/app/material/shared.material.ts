@@ -1,8 +1,12 @@
 import { NgModule } from "@angular/core";
-import { MatAutocompleteModule, MatInputModule } from "@angular/material";
+import {
+  MatAutocompleteModule,
+  MatInputModule,
+  MatCardModule
+} from "@angular/material";
 
 @NgModule({
-  imports: [MatAutocompleteModule, MatInputModule],
-  exports: [MatAutocompleteModule, MatInputModule]
+  imports: [MatAutocompleteModule, MatCardModule, MatInputModule],
+  exports: [MatAutocompleteModule, MatCardModule, MatInputModule]
 })
 export class SharedMaterial {}

@@ -1,0 +1,16 @@
+<ng-content></ng-content>
+
+<div *ngIf="edit; else: add">
+  <button (click)="delete()" type="button" class="btn btn-danger">
+    Remover
+  </button>
+  <button (click)="update()" type="button" class="btn btn-warning">
+    Alterar
+  </button>
+</div>
+
+<ng-template #add>
+  <button (click)="create()" [disabled]="form.invalid" type="button" class="btn btn-success">
+    Criar
+  </button>
+</ng-template>

@@ -1,0 +1,34 @@
+<form [formGroup]="tForm">
+    <input type="hidden" formControlName="id" />
+  
+    <div class="form-group">
+      <label>Valor</label>
+      <input type="number" formControlName="valor" class="form-control" />
+    </div>
+  
+    <div class="form-group">
+      <label>Origem</label>
+      <cidades-autocomplete
+        [display]="displayLocal()"
+        [searchFunction]="cService.cidadeJSON"
+        ctrlName="origem"
+        [form]="tForm"
+      ></cidades-autocomplete>
+    </div>
+
+    <div class="form-group">
+        <label>Destino</label>
+        <cidades-autocomplete
+          [display]="displayLocal()"
+          [searchFunction]="cService.cidadeJSON"
+          ctrlName="destino"
+          [form]="tForm"
+        ></cidades-autocomplete>
+      </div>
+  </form>
+  
+  <steventos-form
+    [service]="tService"
+    [form]="tForm"
+    (setValue)="setTransporte($event)"
+  ></steventos-form>

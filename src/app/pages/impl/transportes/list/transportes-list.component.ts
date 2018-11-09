@@ -1,12 +1,16 @@
 import { Component, OnInit } from "@angular/core";
+import { Transporte } from "src/app/models/transporte.model";
+import { TransporteService } from "src/app/services/impl/transporte.service";
 
 @Component({
-  selector: "app-transportes-list",
-  templateUrl: "./transportes-list.component.html",
-  styleUrls: ["./transportes-list.component.scss"]
+  templateUrl: "../../../abstract/list/abstract.list.html"
 })
 export class TransportesListComponent implements OnInit {
-  constructor() {}
+  constructor(public service: TransporteService) {}
 
   ngOnInit() {}
+
+  displayList(): Function {
+    return Transporte.display();
+  }
 }

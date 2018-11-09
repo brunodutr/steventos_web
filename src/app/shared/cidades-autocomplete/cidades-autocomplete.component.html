@@ -1,10 +1,15 @@
-<form [formGroup]="cidadeForm">
-
-  <input type="text" class="form-control" matInput formControlName="cidade" required [matAutocomplete]="autoGroup">
-  <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="display" (optionSelected)="emit($event)">
-    <mat-option *ngFor="let local of localObservable | async" [value]="local">
+<div [formGroup]="form">
+  <input
+    type="text"
+    class="form-control"
+    matInput
+    [formControlName]="ctrlName"
+    required
+    [matAutocomplete]="autoGroup"
+  />
+  <mat-autocomplete #autoGroup="matAutocomplete" [displayWith]="display">
+    <mat-option *ngFor="let local of (localObservable | async)" [value]="local">
       {{ display(local) }}
     </mat-option>
   </mat-autocomplete>
-
-</form>
+</div>

@@ -8,7 +8,7 @@ import { SteventosService } from "../steventos.service";
 })
 export class PessoaService extends SteventosService<Pessoa> {
   constructor(private _http: HttpClient) {
-    super(_http, "pessoas");
+    super(_http, "pessoas", Pessoa);
   }
 
   findByEmail(email: string) {

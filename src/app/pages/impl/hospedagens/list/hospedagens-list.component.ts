@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { Hospedagem } from "src/app/models/hospedagem.model";
+import { HospedagemService } from "src/app/services/impl/hospedagem.service";
 
 @Component({
-  selector: 'app-hospedagens-list',
-  templateUrl: './hospedagens-list.component.html',
-  styleUrls: ['./hospedagens-list.component.scss']
+  templateUrl: "../../../abstract/list/abstract.list.html"
 })
 export class HospedagensListComponent implements OnInit {
+  constructor(public service: HospedagemService) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  displayList(): Function {
+    return Hospedagem.display();
   }
-
 }

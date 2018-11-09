@@ -1,0 +1,7 @@
+organization=brunodutr-github
+projectKey=steventos_web
+serverUrl=https://sonarcloud.io
+serverVersion=7.5.0.19078
+dashboardUrl=https://sonarcloud.io/dashboard?id=steventos_web
+ceTaskId=AWb0VvdUTnw0J_G3HL4U
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AWb0VvdUTnw0J_G3HL4U

@@ -4,9 +4,9 @@ export class Local implements DisplayAutocomplete<Local> {
   readonly type: string = Local.name;
   private id: number;
 
-  private cidade: string;
+  cidade: string;
 
-  private estado: string;
+  estado: string;
 
   constructor(object?: any) {
     Object.assign(this, object);

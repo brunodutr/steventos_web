@@ -3,13 +3,19 @@ import { Local } from "./local.model";
 export class Hospedagem {
   readonly type: string = Hospedagem.name;
 
-  private id: number;
+  id: number;
 
-  private nome: string;
+  nome: string;
 
-  private local: Local;
+  local: Local;
 
   constructor(object?: any) {
-    Object.assign(this, object);
+    this.id = object.id;
+    this.nome = object.nome;
+    this.local = object.local;
+  }
+
+  static display(): Function {
+    return ((h?: Hospedagem) => (h ? h.nome : undefined)).bind(this);
   }
 }

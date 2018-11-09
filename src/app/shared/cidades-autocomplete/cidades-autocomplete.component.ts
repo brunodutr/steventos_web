@@ -10,8 +10,11 @@ import { Local } from "../../models/local.model";
   styleUrls: ["./cidades-autocomplete.component.scss"]
 })
 export class CidadesAutocomplete implements OnInit {
-  cidadeForm: FormGroup;
-  localObservable: Observable<Local[]>;
+  @Input()
+  form: FormGroup;
+
+  @Input()
+  ctrlName: string;
 
   @Input()
   display: Function;
@@ -19,20 +22,12 @@ export class CidadesAutocomplete implements OnInit {
   @Input()
   searchFunction: Function;
 
-  @Input()
-  value: Local;
-
-  @Output()
-  valueChange = new EventEmitter<Local>();
+  localObservable: Observable<Local[]>;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.cidadeForm = this.formBuilder.group({
-      cidade: [""]
-    });
-
-    this.localObservable = this.cidadeForm.get("cidade")!.valueChanges.pipe(
+    this.localObservable = this.form.get(this.ctrlName)!.valueChanges.pipe(
       startWith(""),
       debounceTime(500),
       switchMap(value => {
@@ -43,10 +38,5 @@ export class CidadesAutocomplete implements OnInit {
         }
       })
     );
-  }
-
-  emit(event) {
-    this.value = event.option.value;
-    this.valueChange.emit(this.value);
   }
 }

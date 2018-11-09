@@ -6,9 +6,10 @@ import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { FIREBASE_CONFIG } from "./constants/firebase.constant";
 import { HttpsRequestInterceptor } from "./interceptors/http.interceptor";
 import { UiModule } from "./modules/ui.module";
-import { FIREBASE_CONFIG } from "./constants/firebase.constant";
+import { ErrorsModule } from "./modules/errors.module";
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,6 +19,7 @@ import { FIREBASE_CONFIG } from "./constants/firebase.constant";
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     UiModule,
+    ErrorsModule,
     HttpClientModule,
     BrowserAnimationsModule
   ],

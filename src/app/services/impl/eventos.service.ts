@@ -6,7 +6,7 @@ import { SteventosService } from "../steventos.service";
 @Injectable()
 export class EventoService extends SteventosService<Evento> {
   constructor(private _http: HttpClient) {
-    super(_http, "eventos");
+    super(_http, "eventos", Evento);
   }
 
   getPessoas(id: number) {

@@ -1,12 +1,17 @@
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { GenericUtils } from "../utils/generic.utils";
 
-const REST_URL = "http://steventos-steventos.1d35.starter-us-east-1.openshiftapps.com/rest";
+const REST_URL = "http://localhost:8080/rest";
 
 export class SteventosService<T> {
   URL_REST: string;
 
-  constructor(private http: HttpClient, private path: string) {
+  constructor(
+    private http: HttpClient,
+    private path: string,
+    private clazz: any
+  ) {
     this.URL_REST = `${REST_URL}/${this.path}`;
   }
 
@@ -19,15 +24,17 @@ export class SteventosService<T> {
   }
 
   create(entity: T): Promise<T> {
-    return this.http.post<T>(this.URL_REST, entity).toPromise();
+    let objeto = GenericUtils.getGenericObject(this.clazz, entity);
+    return this.http.post<T>(this.URL_REST, objeto).toPromise();
   }
 
-  update(id: number, entity: T) {
-    return this.http.put<T>(`${this.URL_REST}/${id}`, entity);
+  update(id: number, entity: T): Promise<T> {
+    let objeto = GenericUtils.getGenericObject(this.clazz, entity);
+    return this.http.put<T>(`${this.URL_REST}/${id}`, objeto).toPromise();
   }
 
-  delete(id: number) {
-    return this.http.delete(`${this.URL_REST}/${id}`);
+  delete(id: number): Promise<any> {
+    return this.http.delete(`${this.URL_REST}/${id}`).toPromise();
   }
 
   protected getField(id: number, campo: string): Observable<[]> {

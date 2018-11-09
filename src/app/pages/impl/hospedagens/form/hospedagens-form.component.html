@@ -1,0 +1,24 @@
+<form [formGroup]="hForm">
+  <input type="hidden" formControlName="id" />
+
+  <div class="form-group">
+    <label>Nome</label>
+    <input type="text" formControlName="nome" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label>Local</label>
+    <cidades-autocomplete
+      [display]="displayLocal()"
+      [searchFunction]="cService.cidadeJSON"
+      ctrlName="local"
+      [form]="hForm"
+    ></cidades-autocomplete>
+  </div>
+</form>
+
+<steventos-form
+  [service]="hService"
+  [form]="hForm"
+  (setValue)="setHospedagem($event)"
+></steventos-form>

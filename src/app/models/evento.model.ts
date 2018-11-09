@@ -3,19 +3,23 @@ import { Local } from "./local.model";
 export class Evento {
   readonly type: string = Evento.name;
 
-  private id: number;
+  id: number;
 
-  private nome: string;
+  nome: string;
 
-  private descricao: string;
+  descricao: string;
 
-  private local: Local;
+  local: Local;
 
-  private dataFim: Date;
+  dataFim: Date;
 
-  private dataIni: Date;
+  dataIni: Date;
 
   constructor(object?: any) {
     Object.assign(this, object);
+  }
+
+  static display(): Function {
+    return ((e?: Evento) => (e ? e.descricao : undefined)).bind(this);
   }
 }

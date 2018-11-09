@@ -1,0 +1,12 @@
+<div class="row">
+  <mat-card
+    *ngFor="let objeto of (objetos | async)"
+    class="col-md-4 col-sm-12 mb-2"
+    (click)="navigate(objeto.id)">
+    <img *ngIf="imagem" mat-card-image [src]="objeto.imagem" class="p-2" />
+
+    <mat-card-content>
+      <p>{{ display(objeto) }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

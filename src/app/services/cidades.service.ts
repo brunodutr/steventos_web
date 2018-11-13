@@ -27,7 +27,7 @@ export class CidadeService {
   }
 
   private getCidades(texto: string): Observable<Local[]> {
-    return this.http.get("/assets/estados-cidades.json").pipe(
+    return this.http.get("assets/estados-cidades.json").pipe(
       map((estados: Estado[]) =>
         estados.map(estado => {
           let cidadesFilter = _filter(estado.cidades, texto);

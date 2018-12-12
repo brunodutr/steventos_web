@@ -19,6 +19,10 @@ const routes: Routes = [
     component: EventosDetailComponent
   },
   {
+    path: "usuario/:id",
+    component: EventosListComponent
+  },
+  {
     path: "add/:id",
     component: EventosFormComponent
   },

@@ -2,8 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { GenericUtils } from "../utils/generic.utils";
 
-const REST_URL =
-  "http://steventos-steventos.1d35.starter-us-east-1.openshiftapps.com/rest";
+const REST_URL = "http://localhost:8080/rest";
 
 export class SteventosService<T> {
   URL_REST: string;
@@ -38,12 +37,24 @@ export class SteventosService<T> {
     return this.http.delete(`${this.URL_REST}/${id}`).toPromise();
   }
 
-  protected getField(id: number, campo: string): Observable<[]> {
+  removeField(e_id: number, id: number, campo: string): Promise<void> {
+    return this.http
+      .post<void>(`${this.URL_REST}/${id}/${campo}/remove`, e_id)
+      .toPromise();
+  }
+
+  getInverseField(id: number, campo: string): Observable<[]> {
+    return this.http.get<[]>(`${REST_URL}/${campo}/${id}/${this.path}`);
+  }
+
+  getField(id: number, campo: string): Observable<[]> {
     return this.http.get<[]>(`${this.URL_REST}/${id}/${campo}`);
   }
 
-  protected setField(id: number, campo: string, entity: AddField<T>) {
-    return this.http.post<T[]>(`${this.URL_REST}/${id}/${campo}`, entity);
+  setField(id: number, campo: string, entity: any) {
+    return this.http
+      .post<T[]>(`${this.URL_REST}/${id}/${campo}`, entity)
+      .toPromise();
   }
 
   getAutocomplete(filter: AutocompleteFilter) {

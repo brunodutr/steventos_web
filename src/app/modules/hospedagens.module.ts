@@ -25,6 +25,10 @@ const routes: Routes = [
   {
     path: "edit/:id",
     component: HospedagensFormComponent
+  },
+  {
+    path: "usuario/:id",
+    component: HospedagensListComponent
   }
 ];
 

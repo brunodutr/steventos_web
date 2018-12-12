@@ -1,6 +1,6 @@
 export class Pessoa {
   readonly type: string = Pessoa.name;
-  private id: number;
+  public id: number;
 
   private nome: string;
 
@@ -8,12 +8,17 @@ export class Pessoa {
 
   private dataNascimento: Date;
 
-  private perfil: number;
+  public perfil: number | string;
 
   constructor(object?: any) {
-    this.nome = object.nome;
-    this.email = object.email;
-    this.dataNascimento = object.dataNascimento;
-    this.perfil = object.perfil;
+    if (object) {
+      if (object.id) {
+        this.id = object.id;
+      }
+      this.nome = object.nome;
+      this.email = object.email;
+      this.dataNascimento = object.dataNascimento;
+      this.perfil = object.perfil;
+    }
   }
 }

@@ -4,3 +4,25 @@
   <p>{{ object?.origem.cidade }} - {{ object?.origem.estado }}</p>
   <p>{{ object?.destino.cidade }} - {{ object?.destino.estado }}</p>
 </div>
+
+<div [ngSwitch]="usuario.perfil">
+  <button
+    (click)="participar(object.id)"
+    *ngSwitchCase="'USUARIO'"
+    class="btn btn-primary"
+  >
+    Participar
+  </button>
+
+  <button *ngSwitchCase="'DONO_RECURSO'" class="btn btn-warning">
+    Alterar
+  </button>
+
+  <button
+    (click)="deletar(object.id)"
+    *ngSwitchCase="'ADMINISTRADOR'"
+    class="btn btn-danger"
+  >
+    Deletar
+  </button>
+</div>

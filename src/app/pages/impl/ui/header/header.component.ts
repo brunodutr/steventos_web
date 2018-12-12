@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "src/app/services/auth.service";
+import { Pessoa } from "src/app/models/pessoa.model";
 
 @Component({
   selector: "app-header",
@@ -17,10 +18,21 @@ export class HeaderComponent implements OnInit {
       path: "/transportes"
     }
   ];
+  usuario: Pessoa;
 
   constructor(private auth: AuthService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.auth.usuarioLogado$.subscribe(
+      (result: Pessoa) => (this.usuario = result)
+    );
+  }
+  getUserLink(path: string){
+    return `/${path}/usuario/${this.usuario.id}`
+  }
+  logout(){
+    this.auth.logout();
+  }
 }
 
 export interface Page {

@@ -7,6 +7,7 @@ import { TransportesFormComponent } from "../pages/impl/transportes/form/transpo
 import { TransporteService } from "../services/impl/transporte.service";
 import { SharedModule } from "./shared.module";
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { SharedMaterial } from "../material/shared.material";
 
 const routes: Routes = [
   {
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     path: "edit/:id",
     component: TransportesFormComponent
+  }, 
+  {
+    path: "usuario/:id",
+    component: TransportesListComponent
   }
 ];
 
@@ -32,6 +37,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
+    SharedMaterial,
     ReactiveFormsModule,
     FormsModule
   ],

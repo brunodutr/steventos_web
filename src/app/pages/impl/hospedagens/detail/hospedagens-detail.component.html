@@ -1,3 +1,25 @@
 <p>{{ object?.id }}</p>
 <p>{{ object?.nome }}</p>
 <p>{{ object?.local.cidade }} - {{ object?.local.estado }}</p>
+
+<div [ngSwitch]="usuario.perfil">
+  <button
+    (click)="participar(object.id)"
+    *ngSwitchCase="'USUARIO'"
+    class="btn btn-primary"
+  >
+    Participar
+  </button>
+
+  <button *ngSwitchCase="'DONO_RECURSO'" class="btn btn-warning">
+    Alterar
+  </button>
+
+  <button
+    (click)="deletar(object.id)"
+    *ngSwitchCase="'ADMINISTRADOR'"
+    class="btn btn-danger"
+  >
+    Deletar
+  </button>
+</div>

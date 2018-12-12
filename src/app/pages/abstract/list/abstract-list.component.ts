@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { SteventosService } from "src/app/services/steventos.service";
 
@@ -19,13 +19,34 @@ export class SteventosListComponent implements OnInit {
 
   objetos: Observable<any[]>;
 
-  constructor(private router: Router) {}
+  id: number;
+
+  constructor(public activatedRoute: ActivatedRoute, private router: Router) {
+    this.activatedRoute.params.subscribe(params => {
+      this.id = +params["id"];
+    });
+  }
 
   ngOnInit(): void {
-    this.objetos = this.service.getAll();
+    this.buscar();
+  }
+
+  private buscar() {
+    if (!this.id) {
+      this.objetos = this.service.getAll();
+    } else {
+      this.objetos = this.service.getInverseField(this.id, "pessoas");
+    }
+  }
+
+  async remover(e_id: number) {
+    await this.service.removeField(e_id, this.id, "pessoas");
+    this.buscar();
   }
 
   navigate(id: number) {
-    this.router.navigateByUrl(`/${this.router.url}/${id}`);
+    if (!this.id) {
+      this.router.navigateByUrl(`/${this.router.url}/${id}`);
+    }
   }
 }

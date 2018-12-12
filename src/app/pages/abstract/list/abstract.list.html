@@ -1,1 +1,66 @@
+<h1 *ngIf="id"> {{ format() }}</h1>
+
+<form *ngIf="!id" [formGroup]="searchForm">
+  <div class="container h-100">
+    <div
+      class="row h-100 justify-content-center align-items-center align-bottom border mb-2 pt-1 pb-1"
+    >
+      <div class="form-group ml-1 mr-1">
+        <label>{{ type !== "TRANSPORTE" ? "Local" : "Origem" }}</label>
+        <cidades-autocomplete
+          [display]="displayLocal()"
+          [searchFunction]="cService.cidadeREST"
+          ctrlName="local"
+          [form]="searchForm"
+        ></cidades-autocomplete>
+      </div>
+
+      <div *ngIf="type === 'TRANSPORTE'" class="form-group ml-1 mr-1">
+        <label>Destino</label>
+        <cidades-autocomplete
+          [display]="displayLocal()"
+          [searchFunction]="cService.cidadeREST"
+          ctrlName="destino"
+          [form]="searchForm"
+        ></cidades-autocomplete>
+      </div>
+
+      <div *ngIf="type === 'EVENTO'" class="form-group ml-1 mr-1">
+        <label>Data Inicial</label>
+        <mat-datepicker #dInicial></mat-datepicker>
+        <mat-datepicker-toggle
+          matSuffix
+          [for]="dInicial"
+        ></mat-datepicker-toggle>
+        <input
+          formControlName="dataIni"
+          matInput
+          [matDatepicker]="dInicial"
+          class="form-control"
+        />
+      </div>
+
+      <div *ngIf="type === 'EVENTO'" class="form-group ml-1 mr-1">
+        <label>Data Final</label>
+        <mat-datepicker #dFinal></mat-datepicker>
+        <mat-datepicker-toggle matSuffix [for]="dFinal"></mat-datepicker-toggle>
+        <input
+          formControlName="dataFim"
+          matInput
+          [matDatepicker]="dFinal"
+          class="form-control"
+        />
+      </div>
+
+      <button
+        [disabled]="valid()"
+        (click)="pesquisar()"
+        class="btn btn-success"
+      >
+        Buscar
+      </button>
+    </div>
+  </div>
+</form>
+
 <steventos-list [service]="service" [display]="displayList()"></steventos-list>

@@ -1,6 +1,8 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { LocalStorage } from "@ngx-pwa/local-storage";
+import { User } from "firebase";
+import { BehaviorSubject } from "rxjs";
 import { Pessoa } from "../models/pessoa.model";
 import { PessoaService } from "./impl/pessoa.service";
 
@@ -8,16 +10,27 @@ import { PessoaService } from "./impl/pessoa.service";
   providedIn: "root"
 })
 export class AuthService {
-  usuarioLogado: Pessoa;
+  usuarioLogado$: BehaviorSubject<Pessoa> = new BehaviorSubject(new Pessoa());
 
   constructor(
     private localStorage: LocalStorage,
     private auth: AngularFireAuth,
     private pessoaService: PessoaService
-  ) {}
+  ) {
+    this.auth.authState.subscribe((result: User) => {
+      if (result.email) {
+        this.setUsuarioLogado(result.email);
+      }
+    });
+  }
 
   createUser(email: string, senha: string): Promise<any> {
     return this.auth.auth.createUserWithEmailAndPassword(email, senha);
+  }
+
+  async logout() {
+    await this.auth.auth.signOut();
+    this.usuarioLogado$.next(new Pessoa());
   }
 
   async authenticate(email: string, senha: string) {
@@ -27,10 +40,12 @@ export class AuthService {
 
     this.localStorage.setItem("token", token);
 
-    this.usuarioLogado = await this.pessoaService
-      .findByEmail(email)
-      .toPromise();
+    this.setUsuarioLogado(email);
+  }
 
-    console.log(this.usuarioLogado);
+  private setUsuarioLogado(email: string) {
+    this.pessoaService
+      .findByEmail(email)
+      .subscribe((result: Pessoa) => this.usuarioLogado$.next(result));
   }
 }

@@ -6,8 +6,6 @@ import { AutocompleteFilter, SteventosService } from "./steventos.service";
 import { Local } from "../models/local.model";
 import { LocalService } from "./impl/local.service";
 
-const URL_REST = "http://localhost:8080/rest/locais/autocomplete";
-
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toString().toLowerCase();
 
@@ -27,7 +25,7 @@ export class CidadeService {
   }
 
   private getCidades(texto: string): Observable<Local[]> {
-    return this.http.get("/steventos_web/assets/estados-cidades.json").pipe(
+    return this.http.get("/assets/estados-cidades.json").pipe(
       map((estados: Estado[]) =>
         estados.map(estado => {
           let cidadesFilter = _filter(estado.cidades, texto);

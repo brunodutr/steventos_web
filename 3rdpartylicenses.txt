@@ -258,7 +258,13 @@ Apache-2.0
 
 @angular/material/autocomplete
 
+@angular/material/dialog
+
 @angular/material/card
+
+@angular/material/datepicker
+
+@angular/material/button
 
 tslib
 Apache-2.0
@@ -395,9 +401,6 @@ MIT
 MIT
 
 @angular/material/icon
-
-@angular/fire
-MIT
 
 @angular/fire/auth
 MIT
@@ -610,6 +613,15 @@ Apache-2.0
 
 firebase/auth
 
+@angular/fire
+MIT
+
+@angular/core
+MIT
+
+@angular/compiler
+MIT
+
 @ngx-pwa/local-storage
 MIT
 The MIT License
@@ -635,12 +647,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
-@angular/core
-MIT
-
-@angular/compiler
-MIT
-
 zone.js
 MIT
 The MIT License
@@ -664,10 +670,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
-
-@angular/material/dialog
-
-@angular/material/button
-
-@angular/material/datepicker

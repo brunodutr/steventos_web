@@ -266,9 +266,6 @@ Apache-2.0
 
 @angular/material/button
 
-@angular/core
-MIT
-
 tslib
 Apache-2.0
 Apache License
@@ -617,6 +614,12 @@ Apache-2.0
 firebase/auth
 
 @angular/fire
+MIT
+
+@angular/core
+MIT
+
+@angular/compiler
 MIT
 
 @ngx-pwa/local-storage
